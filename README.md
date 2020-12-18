@@ -5,11 +5,12 @@ Files & reference for the live lessons.
 * [MAMP](http://mamp.info/)
 * [VS Code](https://code.visualstudio.com/)
 * [Homebrew](https://brew.sh/)
+* [Postman](https://www.postman.com/product/rest-client/)
 
 ### External references
 * [php.net](https://www.php.net/manual/)
 * [MDN forms documentation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data)
-
+* [What is REST?](https://developer.mozilla.org/en-US/docs/Glossary/REST)
 
 ### License
 MIT License
