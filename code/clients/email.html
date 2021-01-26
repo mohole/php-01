@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+  <style>
+    button {
+      margin: 20px 0;
+    }
+
+    .alert {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="container">
+    <h1>Invia email con PHP e Javascript</h1>
+    
+    <form>
+    
+      <label for="to" class="form-label">To:</label>
+      <input type="email" name="to" class="form-control">
+    
+      <label for="subject" class="form-label">Subject:</label>
+      <input type="text" name="subject" class="form-control">
+    
+      <label for="message" class="form-label">Message:</label>
+      <textarea class="form-control"></textarea>
+    
+      <button type="button" class="btn btn-primary">Invia</button>
+    
+    </form>
+    
+    <div class="alert alert-success">
+      Mail inviata correttamente
+    </div>
+    
+    <div class="alert alert-danger">
+      C'è stato un problema nell'invio
+    </div>
+  </section>
+
+<script src="libs.js"></script>
+<script>
+  // CHANGE THIS
+  const URL = 'http://localhost:8888/php-01/code/06-email/';
+
+  q('form button').addEventListener('click', () => {
+
+    const data = {
+      'to': q('form input[name="to"]').value,
+      "subject": q('form input[name="subject"]').value,
+      message: q('form textarea').value
+    }
+
+    console.log(data);
+
+    q('form button').disabled = true;
+
+    fetch(URL, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then((response) => response.json())
+      .then((feedback) => {
+        console.log(feedback);
+
+        // if(feedback.status === true) {
+        if (feedback.status) {
+          q('.alert-success').classList.add('visible');
+        } else {
+          q('.alert-danger').classList.add('visible');
+        }
+      });
+
+  });
+
+</script>
+
+</body>
+
+</html>

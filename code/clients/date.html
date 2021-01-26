@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+  <style>
+    .visible {
+      display: block;
+    }
+
+    .hide {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body> 
+
+  <section class="container">
+    <h1>Integrazione con PHP</h1>
+    <span id="content">---</span>
+    <span id="loader" class="hide badge bg-warning text-dark">Caricamento in corso...</span>
+    <div>
+      <button class="btn btn-primary">Leggi la data dal server</button>
+    </div>
+  </section>
+
+<script src="libs.js"></script>
+<script>
+  // CHANGE THIS!
+  const URL = 'http://localhost:8888/php-01/code/05-rest/';
+
+  q('button').addEventListener('click', () => {
+
+    q('#loader').classList.remove('hide');
+    q('#content').classList.add('hide');
+
+    fetch(URL)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        q('span').innerHTML = `Oggi è il ${data.date} ore ${data.time}`;
+
+        q('#loader').classList.add('hide');
+        q('#content').classList.remove('hide');
+      });
+  });
+
+</script>
+
+</body>
+
+</html>
